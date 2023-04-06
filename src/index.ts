@@ -43,7 +43,6 @@ function parseEmail(rawEmail: string): ParsedEmail {
 
   return { messageId, inReplyTo, date, rawEmail };
 }
-
 function buildEmailTree(emails: ParsedEmail[]): Map<string, ParsedEmail[]> {
   const emailTree = new Map<string, ParsedEmail[]>();
 
@@ -64,32 +63,30 @@ function buildEmailTree(emails: ParsedEmail[]): Map<string, ParsedEmail[]> {
 
 function traverseEmailTree(emailTree: Map<string, ParsedEmail[]>): ParsedEmail[][] {
   const chains: ParsedEmail[][] = [];
-  const rootNodes = Array.from(emailTree.values())
-    .flat()
-    .filter((email) => email.inReplyTo === null);
+  const rootNodes = emailTree.get("root") || [];
+  emailTree.delete("root");
 
   for (const rootNode of rootNodes) {
     const chain: ParsedEmail[] = [rootNode];
-    let currentEmail = rootNode;
+    let children = emailTree.get(rootNode.messageId);
+    emailTree.delete(rootNode.messageId);
 
-    while (true) {
-      const children = emailTree.get(currentEmail.messageId);
+    if (rootNode.messageId === "<SNT128-W654AE084F66FD2255A6D287D24@example.com>") console.log(children);
 
-      if (!children || children.length === 0) {
-        break;
-      }
-
-      children.sort((a, b) => a.date.getTime() - b.date.getTime());
-
-      // add all children to the chain and continue onwards
-      for (const nextEmail of children) {
-        chain.push(nextEmail);
-        currentEmail = nextEmail;
-      }
+    while (children && children.length > 0) {
+      const child = children.pop();
+      if (!child) continue;
+      chain.push(child);
+      children = [...children, ...(emailTree.get(child.messageId) || [])];
+      emailTree.delete(child.messageId);
     }
 
     chains.push(chain);
   }
+
+  chains.forEach((chain) => {
+    chain.sort((a, b) => a.date.getTime() - b.date.getTime());
+  });
 
   return chains;
 }
@@ -129,9 +126,9 @@ function shuffleArray<T>(array: T[]): T[] {
 const rawEmails = [...TEST_SET_1, ...TEST_SET_2];
 const parsedEmails = rawEmails.map(parseEmail);
 const shuffledEmails = shuffleArray(parsedEmails);
-const emailTree = buildEmailTree(shuffledEmails);
-const sortedEmailChains = traverseEmailTree(emailTree);
 
-// writeToJsonFile(mapToObject(emailTree), "emailTree.json");
-// console.log(rawEmails.length, sortedEmailChains.flat().length);
+const emailTree = buildEmailTree(shuffledEmails);
+writeJsonToFile(mapToObject(emailTree), "emailTree.json");
+
+const sortedEmailChains = traverseEmailTree(emailTree);
 writeJsonToFile(sortedEmailChains, "output.json");
