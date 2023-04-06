@@ -71,8 +71,6 @@ function traverseEmailTree(emailTree: Map<string, ParsedEmail[]>): ParsedEmail[]
     let children = emailTree.get(rootNode.messageId);
     emailTree.delete(rootNode.messageId);
 
-    if (rootNode.messageId === "<SNT128-W654AE084F66FD2255A6D287D24@example.com>") console.log(children);
-
     while (children && children.length > 0) {
       const child = children.pop();
       if (!child) continue;
