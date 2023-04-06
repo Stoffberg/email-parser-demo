@@ -52,6 +52,11 @@ function buildEmailTree(emails: ParsedEmail[]): Map<string, ParsedEmail[]> {
     const children = emailTree.get(parentId) || [];
     children.push(email);
     emailTree.set(parentId, children);
+
+    // add email to tree even if it doesn't have a valid inReplyTo value
+    if (!emailTree.has(email.messageId)) {
+      emailTree.set(email.messageId, []);
+    }
   }
 
   return emailTree;
@@ -75,9 +80,12 @@ function traverseEmailTree(emailTree: Map<string, ParsedEmail[]>): ParsedEmail[]
       }
 
       children.sort((a, b) => a.date.getTime() - b.date.getTime());
-      const nextEmail = children[0];
-      chain.push(nextEmail);
-      currentEmail = nextEmail;
+
+      // add all children to the chain and continue onwards
+      for (const nextEmail of children) {
+        chain.push(nextEmail);
+        currentEmail = nextEmail;
+      }
     }
 
     chains.push(chain);
@@ -97,8 +105,20 @@ function writeJsonToFile(obj: object, fileName: string): void {
   });
 }
 
+function mapToObject<T>(map: Map<string, T>): Record<string, T> {
+  const obj: Record<string, T> = {};
+
+  for (const [key, value] of map) {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 const rawEmails = [...TEST_SET_1, ...TEST_SET_2];
 const parsedEmails = rawEmails.map(parseEmail);
 const emailTree = buildEmailTree(parsedEmails);
 const sortedEmailChains = traverseEmailTree(emailTree);
+
+// writeToJsonFile(mapToObject(emailTree), "emailTree.json");
 writeJsonToFile(sortedEmailChains, "output.json");

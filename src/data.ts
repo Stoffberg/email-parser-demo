@@ -50,7 +50,7 @@ Joe
 From: Jane Smith <jane.smith@example.org>
 Date: Tue, 10 Jul 2023 09:30:22 -0400
 To: John Doe <john.doe@example.com>, Joe Bloggs <joe.bloggs@example.net>
-Subject: Re: Meeting Tomorrow - Room Change
+Subject: Meeting Tomorrow - Room Change
 Message-ID: <SNT127-W987AE084F66FD2255A6D287D23@example.org>
 
 Hi John and Joe,
@@ -90,7 +90,7 @@ Joe
 From: Jane Smith <jane.smith@example.org>
 Date: Tue, 10 Jul 2023 11:45:55 -0400
 To: John Doe <john.doe@example.com>, Joe Bloggs <joe.bloggs@example.net>
-Subject: Re: Meeting Summary
+Subject: Meeting Summary
 Message-ID: <SNT130-W987AE084F66FD2255A6D287D26@example.org>
 
 Hello John and Joe,
