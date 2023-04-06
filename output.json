@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "messageId": "<SNT124-W841AE084F66FD2255A6D287D20@example.com>",
+      "inReplyTo": null,
+      "date": "2023-07-09T21:12:28.000Z",
+      "rawEmail": "\nFrom: John Doe <john.doe@example.com>\nDate: Mon, 9 Jul 2023 19:12:28 -0400\nTo: Jane Smith <jane.smith@example.org>\nCC: Joe Bloggs <joe.bloggs@example.net>\nSubject: Meeting Tomorrow\nMessage-ID: <SNT124-W841AE084F66FD2255A6D287D20@example.com>\n\nHello Jane and Joe,\n\nJust a quick reminder about our meeting tomorrow at 10 AM.\n\nBest regards,\nJohn\n  "
+    },
+    {
+      "messageId": "<SNT125-W481AE084F66FD2255A6D287D21@example.org>",
+      "inReplyTo": "<SNT124-W841AE084F66FD2255A6D287D20@example.com>",
+      "date": "2023-07-09T21:45:36.000Z",
+      "rawEmail": "\nFrom: Jane Smith <jane.smith@example.org>\nDate: Mon, 9 Jul 2023 19:45:36 -0400\nTo: John Doe <john.doe@example.com>\nSubject: Re: Meeting Tomorrow\nMessage-ID: <SNT125-W481AE084F66FD2255A6D287D21@example.org>\nIn-Reply-To: <SNT124-W841AE084F66FD2255A6D287D20@example.com>\nReferences: <SNT124-W841AE084F66FD2255A6D287D20@example.com>\n\nHi John,\n\nThanks for the reminder. I'll be there.\n\nBest,\nJane\n  "
+    }
+  ],
+  [
+    {
+      "messageId": "<SNT127-W987AE084F66FD2255A6D287D23@example.org>",
+      "inReplyTo": null,
+      "date": "2023-07-10T11:30:22.000Z",
+      "rawEmail": "\nFrom: Jane Smith <jane.smith@example.org>\nDate: Tue, 10 Jul 2023 09:30:22 -0400\nTo: John Doe <john.doe@example.com>, Joe Bloggs <joe.bloggs@example.net>\nSubject: Re: Meeting Tomorrow - Room Change\nMessage-ID: <SNT127-W987AE084F66FD2255A6D287D23@example.org>\n\nHi John and Joe,\n\nJust a heads up, the meeting room has been changed to Room 202.\n\nBest,\nJane\n  "
+    },
+    {
+      "messageId": "<SNT128-W654AE084F66FD2255A6D287D24@example.com>",
+      "inReplyTo": "<SNT127-W987AE084F66FD2255A6D287D23@example.org>",
+      "date": "2023-07-10T11:32:10.000Z",
+      "rawEmail": "\nFrom: John Doe <john.doe@example.com>\nDate: Tue, 10 Jul 2023 09:32:10 -0400\nTo: Jane Smith <jane.smith@example.org>, Joe Bloggs <joe.bloggs@example.net>\nSubject: Re: Meeting Tomorrow - Room Change\nMessage-ID: <SNT128-W654AE084F66FD2255A6D287D24@example.com>\nIn-Reply-To: <SNT127-W987AE084F66FD2255A6D287D23@example.org>\nReferences: <SNT124-W841AE084F66FD2255A6D287D20@example.com> <SNT127-W987AE084F66FD2255A6D287D23@example.org>\n\nThanks for the update, Jane! See you in Room 202.\n\nJohn\n  "
+    }
+  ],
+  [
+    {
+      "messageId": "<SNT130-W987AE084F66FD2255A6D287D26@example.org>",
+      "inReplyTo": null,
+      "date": "2023-07-10T13:45:55.000Z",
+      "rawEmail": "\nFrom: Jane Smith <jane.smith@example.org>\nDate: Tue, 10 Jul 2023 11:45:55 -0400\nTo: John Doe <john.doe@example.com>, Joe Bloggs <joe.bloggs@example.net>\nSubject: Re: Meeting Summary\nMessage-ID: <SNT130-W987AE084F66FD2255A6D287D26@example.org>\n\nHello John and Joe,\n\nGreat meeting today! Here's a summary of what we discussed:\n1. Project timeline update\n2. Budget allocation\n3. Team responsibilities\n\nPlease let me know if you have any questions.\n\nBest,\nJane\n  "
+    }
+  ],
+  [
+    {
+      "messageId": "<SNT001-W001AE084F66FD2255A6D287D01@example.com>",
+      "inReplyTo": null,
+      "date": "2023-04-14T10:22:16.000Z",
+      "rawEmail": "\nFrom: Lisa Brown <lisa.brown@example.com>\nDate: Fri, 14 Apr 2023 08:22:16 -0400\nTo: Jack Smith <jack.smith@example.org>\nCC: Rachel Green <rachel.green@example.net>\nSubject: Follow-Up Meeting\nMessage-ID: <SNT001-W001AE084F66FD2255A6D287D01@example.com>\n\nHello Jack and Rachel,\n\nI hope this email finds you well. I wanted to schedule a follow-up meeting to discuss the action items from our last meeting. Would next Thursday at 2 PM work for both of you? If not, please let me know your availability.\n\nBest regards,\nLisa\n    "
+    },
+    {
+      "messageId": "<SNT002-W002AE084F66FD2255A6D287D02@example.net>",
+      "inReplyTo": "<SNT001-W001AE084F66FD2255A6D287D01@example.com>",
+      "date": "2023-04-19T13:03:52.000Z",
+      "rawEmail": "\nFrom: Rachel Green <rachel.green@example.net>\nDate: Wed, 19 Apr 2023 11:03:52 -0400\nTo: Lisa Brown <lisa.brown@example.com>, Jack Smith <jack.smith@example.org>\nSubject: RE: Follow-Up Meeting\nMessage-ID: <SNT002-W002AE084F66FD2255A6D287D02@example.net>\nIn-Reply-To: <SNT001-W001AE084F66FD2255A6D287D01@example.com>\nReferences: <SNT001-W001AE084F66FD2255A6D287D01@example.com>\n\nHi Lisa and Jack,\n\nThank you for scheduling the follow-up meeting. Unfortunately, I won't be able to make it on Thursday at 2 PM. Can we reschedule for Friday at 10 AM instead?\n\nLet me know if that works for you both.\n\nBest,\nRachel\n    "
+    },
+    {
+      "messageId": "<SNT003-W003AE084F66FD2255A6D287D03@example.org>",
+      "inReplyTo": "<SNT002-W002AE084F66FD2255A6D287D02@example.net>",
+      "date": "2023-04-20T16:16:35.000Z",
+      "rawEmail": "\nFrom: Jack Smith <jack.smith@example.org>\nDate: Thu, 20 Apr 2023 14:16:35 -0400\nTo: Lisa Brown <lisa.brown@example.com>, Rachel Green <rachel.green@example.net>\nSubject: RE: Follow-Up Meeting\nMessage-ID: <SNT003-W003AE084F66FD2255A6D287D03@example.org>\nIn-Reply-To: <SNT002-W002AE084F66FD2255A6D287D02@example.net>\nReferences: <SNT001-W001AE084F66FD2255A6D287D01@example.com> <SNT002-W002AE084F66FD2255A6D287D02@example.net>\n\nHi Lisa and Rachel,\n\nFriday at 10 AM works for me. Thank you both for your flexibility.\n\nBest regards,\nJack\n    "
+    }
+  ],
+  [
+    {
+      "messageId": "<SNT004-W004AE084F66FD2255A6D287D04@example.com>",
+      "inReplyTo": null,
+      "date": "2023-04-25T17:08:42.000Z",
+      "rawEmail": "\nFrom: Sarah Lee <sarah.lee@example.com>\nDate: Tue, 25 Apr 2023 15:08:42 -0400\nTo: Lisa Brown <lisa.brown@example.com>, Jack Smith <jack.smith@example.org>, Rachel Green <rachel.green@example.net>\nSubject: Agenda for Meeting\nMessage-ID: <SNT004-W004AE084F66FD2255A6D287D04@example.com>\n\nHello Lisa, Jack, and Rachel,\n\nI hope you all are doing well. Attached you will find the agenda for our upcoming meeting on Friday at 10 AM. Please let me know if you have any questions or if there are any additional items that you would like to discuss.\n\nBest regards,\nSarah\n    "
+    },
+    {
+      "messageId": "<SNT005-W005AE084F66FD2255A6D287D05@example.com>",
+      "inReplyTo": "<SNT004-W004AE084F66FD2255A6D287D04@example.com>",
+      "date": "2023-04-28T12:02:15.000Z",
+      "rawEmail": "\nFrom: Lisa Brown <lisa.brown@example.com>\nDate: Fri, 28 Apr 2023 10:02:15 -0400\nTo: Sarah Lee <sarah.lee@example.com>, Jack Smith <jack.smith@example.org>, Rachel Green <rachel.green@example.net>\nSubject: RE: Agenda for Meeting\nMessage-ID: <SNT005-W005AE084F66FD2255A6D287D05@example.com>\nIn-Reply-To: <SNT004-W004AE084F66FD2255A6D287D04@example.com>\nReferences: <SNT004-W004AE084F66FD2255A6D287D04@example.com>\n\nHi Sarah, Jack, and Rachel,\n\nThank you for sharing the agenda for the meeting. Everything looks good to me. I also wanted to add a discussion item regarding budget allocation for the upcoming project. Please let me know if that can be added to the agenda.\n\nLooking forward to the meeting!\n\nBest regards,\nLisa\n    "
+    }
+  ],
+  [
+    {
+      "messageId": "<SNT006-W006AE084F66FD2255A6D287D06@example.net>",
+      "inReplyTo": null,
+      "date": "2023-05-01T15:45:30.000Z",
+      "rawEmail": "\nFrom: Rachel Green <rachel.green@example.net>\nDate: Mon, 1 May 2023 13:45:30 -0400\nTo: Lisa Brown <lisa.brown@example.com>, Jack Smith <jack.smith@example.org>, Sarah Lee <sarah.lee@example.com>\nSubject: Meeting Summary\nMessage-ID: <SNT006-W006AE084F66FD2255A6D287D06@example.net>\n\nHello Lisa, Jack, and Sarah,\n\nThank you for a productive meeting on Friday. I have summarized our discussion points below:\n- Project timeline update\n- Budget allocation\n- Team responsibilities\n- Update on marketing strategy\n\nPlease let me know if I missed anything or if you have any further questions.\n\nBest regards,\nRachel\n    "
+    },
+    {
+      "messageId": "<SNT007-W007AE084F66FD2255A6D287D07@example.org>",
+      "inReplyTo": "<SNT006-W006AE084F66FD2255A6D287D06@example.net>",
+      "date": "2023-05-03T11:22:45.000Z",
+      "rawEmail": "\nFrom: Jack Smith <jack.smith@example.org>\nDate: Wed, 3 May 2023 09:22:45 -0400\nTo: Lisa Brown <lisa.brown@example.com>, Rachel Green <rachel.green@example.net>, Sarah Lee <sarah.lee@example.com>\nSubject: RE: Meeting Summary\nMessage-ID: <SNT007-W007AE084F66FD2255A6D287D07@example.org>\nIn-Reply-To: <SNT006-W006AE084F66FD2255A6D287D06@example.net>\nReferences: <SNT004-W004AE084F66FD2255A6D287D04@example.com> <SNT006-W006AE084F66FD2255A6D287D06@example.net>\n\nHi Rachel, Lisa, and Sarah,\n\nThank you for summarizing the meeting. I have one more action item to add to the list. Can we schedule a follow-up meeting to discuss the progress of the project? \n\nBest regards,\nJack\n    "
+    }
+  ]
+]
