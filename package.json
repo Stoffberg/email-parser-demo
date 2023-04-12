@@ -15,7 +15,7 @@
     "lint:fix": "eslint --ext .ts src --fix",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "test": "swc src -d dist && node ./dist/index.js"
+    "demo": "swc src -d dist && node ./dist/tests/sorting.js"
   },
   "files": [
     "./dist/**/*"
@@ -42,6 +42,8 @@
     "typescript": "^5.0.3"
   },
   "dependencies": {
-    "mailparser": "^3.6.4"
+    "@types/yargs": "^17.0.24",
+    "mailparser": "^3.6.4",
+    "yargs": "^17.7.1"
   }
 }
