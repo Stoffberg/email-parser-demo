@@ -1,6 +1,6 @@
 import fs from "fs";
 import Yargs from "yargs/yargs";
-import { simpleParser } from "mailparser";
+import { ParsedMail, simpleParser } from "mailparser";
 import sortParsedMails from "../index";
 import { writeJsonToFile } from "src/helpers";
 
@@ -39,22 +39,23 @@ const test = async () => {
       process.exit(1);
     }
 
-    const rawEmails = data.toString().split(/(?=From)/g); // split on "From" at the beginning of a line
-    const parsedEmailPromises = rawEmails.map((rawEmail) => simpleParser(rawEmail));
-    const parsedEmails = await Promise.all(parsedEmailPromises);
+    let sortedEmails: ParsedMail[] | ParsedMail[][] = [];
 
-    console.log(rawEmails.length, "emails parsed");
+    if (argv.file.endsWith(".eml")) {
+      const parsed_email = await simpleParser(data.toString());
+      sortedEmails = [parsed_email];
+    } else {
+      const rawEmails = data.toString().split(/(?=^From .*$)/m);
+      const parsedEmailPromises = rawEmails.map((rawEmail) => simpleParser(rawEmail));
+      const parsedEmails = await Promise.all(parsedEmailPromises);
 
-    const sortedEmails = sortParsedMails(parsedEmails, argv.method === "both" ? "date/thread" : (argv.method as "date" | "thread"));
+      console.log(rawEmails.length, "emails parsed");
 
-    if (argv.verbose) {
-      console.log("Sorted emails:");
-      console.log(sortedEmails);
+      sortedEmails = sortParsedMails(parsedEmails, argv.method === "both" ? "date/thread" : (argv.method as "date" | "thread"));
     }
 
-    if (argv.write) {
-      writeJsonToFile(sortedEmails, argv.name || "sorted-emails.json");
-    }
+    if (argv.verbose) console.log(`Sorted emails: ${JSON.stringify(sortedEmails, null, 2)}`);
+    if (argv.write) writeJsonToFile(sortedEmails, argv.name || "sorted-emails.json");
   });
 };
 
