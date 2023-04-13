@@ -3,6 +3,17 @@ import Yargs from "yargs/yargs";
 import { ParsedMail, simpleParser } from "mailparser";
 import sortParsedMails from "../index";
 import { writeJsonToFile } from "src/helpers";
+import { convert } from "html-to-text";
+
+const output = (emails: Array<any>, options: { verbose?: boolean; write?: boolean; name?: string }) => {
+  if (options.verbose) console.log(`Sorted emails: ${JSON.stringify(emails, null, 2)}`);
+  if (options.write) writeJsonToFile(emails, options.name || "sorted-emails.json");
+};
+
+const removePreviousEmails = (textContent: string) => {
+  const lastIndex = textContent.indexOf("From:");
+  return lastIndex !== -1 ? textContent.substring(0, lastIndex).trim() : textContent;
+};
 
 const test = async () => {
   const argv = await Yargs(process.argv.slice(2))
@@ -20,6 +31,11 @@ const test = async () => {
       alias: "w",
       type: "boolean",
       description: "Write the sorted emails to a JSON file",
+    })
+    .option("reduced", {
+      alias: "r",
+      type: "boolean",
+      description: "Reduce the output to only text",
     })
     .option("name", {
       alias: "o",
@@ -39,7 +55,7 @@ const test = async () => {
       process.exit(1);
     }
 
-    let sortedEmails: ParsedMail[] | ParsedMail[][] = [];
+    let sortedEmails: (ParsedMail | ParsedMail[])[] = [];
 
     if (argv.file.endsWith(".eml")) {
       const parsed_email = await simpleParser(data.toString());
@@ -54,8 +70,20 @@ const test = async () => {
       sortedEmails = sortParsedMails(parsedEmails, argv.method === "both" ? "date/thread" : (argv.method as "date" | "thread"));
     }
 
-    if (argv.verbose) console.log(`Sorted emails: ${JSON.stringify(sortedEmails, null, 2)}`);
-    if (argv.write) writeJsonToFile(sortedEmails, argv.name || "sorted-emails.json");
+    sortedEmails = sortedEmails.map((email) => {
+      if (Array.isArray(email)) return email.map((e) => ({ ...e, attachments: [] } as ParsedMail));
+      return { ...email, attachments: [] } as ParsedMail;
+    });
+
+    if (argv.reduced) {
+      const reducedEmails = sortedEmails.map((email) => {
+        if (Array.isArray(email)) return email.map((e) => removePreviousEmails(convert(e.text || e.textAsHtml || e.html || "")));
+        return removePreviousEmails(convert(email.text || email.textAsHtml || email.html || ""));
+      });
+      output(reducedEmails, argv);
+    } else {
+      output(sortedEmails, argv);
+    }
   });
 };
 
