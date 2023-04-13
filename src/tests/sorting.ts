@@ -77,8 +77,22 @@ const test = async () => {
 
     if (argv.reduced) {
       const reducedEmails = sortedEmails.map((email) => {
-        if (Array.isArray(email)) return email.map((e) => removePreviousEmails(convert(e.text || e.textAsHtml || e.html || "")));
-        return removePreviousEmails(convert(email.text || email.textAsHtml || email.html || ""));
+        if (Array.isArray(email)) {
+          return email.map((e) => ({
+            subject: e.subject,
+            from: e.from?.value,
+            to: Array.isArray(e.to) ? e.to.map((m) => m.value) : e.to?.value,
+            date: e.date,
+            text: removePreviousEmails(convert(e.text || e.textAsHtml || e.html || "")),
+          }));
+        }
+        return {
+          subject: email.subject,
+          from: email.from?.value,
+          to: Array.isArray(email.to) ? email.to.map((m) => m.value) : email.to?.value,
+          date: email.date,
+          text: removePreviousEmails(convert(email.text || email.textAsHtml || email.html || "")),
+        };
       });
       output(reducedEmails, argv);
     } else {
